@@ -1,0 +1,8 @@
+figure_title: 'My analysis'
+color: 'blue'
+figure_font: 12
+cols_to_plot:
+  x: 'number-of-forks'
+  y: 'analysis-output'
+default_save_path: '/output/image.jpg'
+
