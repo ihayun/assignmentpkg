@@ -5,5 +5,5 @@ setup(
     version='0.1.0',
     author='Ihayun Murtopo',
     packages=['assignmentpkg'],
-    install_requires=['requests', 'pyyaml', 'logging']
+    install_requires=['requests', 'pyyaml']
 )
