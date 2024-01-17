@@ -1,33 +1,36 @@
+import os
 from typing import Any, Optional
 import yaml
 import logging
 import json
+import requests
 
 class Analysis():
     def __init__(self, analysis_config:str):
-        CONFIG_PATHS = ['system_config.yml', 'user_config.yml']
+        CONFIG_FILES = ['system_config.yml', 'user_config.yml']
         # add the analysis config to the list of paths to load
-        paths = CONFIG_PATHS + [analysis_config]
+        config_files = CONFIG_FILES + [analysis_config]
 
         # initialize empty dictionary to hold the configuration
         config = {}
 
+        config_path = os.path.dirname(os.path.abspath(__file__)) + '/configs/'
         # load each config file and update the config dictionary
-        for path in paths:
+        for cf in config_files:
             try:
-                with open('../configs/' + path, 'r') as f:
+                with open(config_path + cf, 'r') as f:
                     this_config = yaml.safe_load(f)
                     config.update(this_config)
             except FileNotFoundError:
-                logging.error('File not found - ' + path)
+                logging.error('File not found - ' + config_path + cf)
                 raise FileNotFoundError
                 
         self.config = config
         self.data = {}
         self.analysis_output = {
-            minForks: -1,
-            maxForks: -1,
-            sumForks: -1
+            'minForks': -1,
+            'maxForks': -1,
+            'sumForks': -1
         }
     
     def load_data(self):
@@ -52,12 +55,14 @@ class Analysis():
         forksList = []
         for d in self.data:
             forksList.append(d['forks'])
-
-        self.analysis_output = {
-            minForks: min(forksList),
-            maxForks: max(forksList),
-            meanForks: sum(forksList)/len(forksList)
-        }
-
+        try:
+            self.analysis_output = {
+                'minForks': min(forksList),
+                'maxForks': max(forksList),
+                'meanForks': sum(forksList)/len(forksList)
+            }
+        except ValueError:
+            logging.error('No data loaded')
+            raise ValueError
 
         

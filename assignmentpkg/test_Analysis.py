@@ -2,7 +2,7 @@ import pytest
 from assignmentpkg import Analysis
 
 def test_analysis_load_data():
-    analysis_obj = Analysis('analysis_config.yml')
+    analysis_obj = Analysis.Analysis('analysis_config.yml')
     analysis_obj.load_data()
     
     assert analysis_obj.data != {}
