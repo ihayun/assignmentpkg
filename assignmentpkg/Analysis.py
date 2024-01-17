@@ -62,7 +62,5 @@ class Analysis():
             meanForks: sum(forksList)/len(forksList)
         }
 
-    def plot_data(self, save_path:Optional[str] = None) -> matplotlib.Figure
-        pd.DataFrame(items).plot.bar()
-        plt.show()
+
         
