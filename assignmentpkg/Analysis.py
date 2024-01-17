@@ -1,6 +1,4 @@
 from typing import Any, Optional
-import matplotlib
-import matplotlib.pyplot as plt
 import yaml
 import logging
 import json
