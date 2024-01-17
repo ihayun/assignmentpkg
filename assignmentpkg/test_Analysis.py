@@ -1,5 +1,5 @@
 import pytest
-import Analysis
+from assignmentpkg import Analysis
 
 def test_analysis_load_data():
     analysis_obj = Analysis('analysis_config.yml')
