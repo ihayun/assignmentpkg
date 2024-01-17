@@ -8,7 +8,7 @@ def test_analysis_load_data():
     assert analysis_obj.data != {}
 
 def test_analysis_output():
-    analysis_obj = Analysis('analysis_config.yml')
+    analysis_obj = Analysis.Analysis('analysis_config.yml')
     analysis_obj.load_data()
     analysis_obj.compute_analysis()
 
