@@ -15,7 +15,7 @@ class Analysis():
         # load each config file and update the config dictionary
         for path in paths:
             try:
-                with open(path, 'r') as f:
+                with open('../configs/' + path, 'r') as f:
                     this_config = yaml.safe_load(f)
                     config.update(this_config)
             except FileNotFoundError:
